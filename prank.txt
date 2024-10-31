@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Simulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+        #hacking {
+            font-size: 1.5em;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        .alert-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #111;
+            color: red;
+            border: 2px solid red;
+            font-size: 1.2em;
+            text-align: center;
+            box-shadow: 0 0 20px red;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="hacking">Initializing system...</div>
+    <div class="alert-box hidden" id="alertBox">
+        <p>Warning: Unauthorized access detected!</p>
+        <p>System integrity compromised.</p>
+        <button onclick="closeAlert()">Close</button>
+    </div>
+
+    <script>
+        const messages = [
+            "Establishing secure connection...",
+            "Encrypting data...",
+            "Breach detected!",
+            "Attempting to resolve...",
+            "Error! System lockdown initiated.",
+            "Data compromised!"
+        ];
+
+        let index = 0;
+        const hackingDiv = document.getElementById('hacking');
+        const alertBox = document.getElementById('alertBox');
+
+        function displayMessage() {
+            if (index < messages.length) {
+                hackingDiv.textContent = messages[index];
+                index++;
+                setTimeout(displayMessage, 1500);
+            } else {
+                hackingDiv.classList.add('hidden');
+                alertBox.classList.remove('hidden');
+            }
+        }
+
+        function closeAlert() {
+            alertBox.classList.add('hidden');
+            alert("System shutdown in progress... please wait.");
+            setTimeout(() => alert("Goodbye!"), 3000);
+        }
+
+        displayMessage();
+    </script>
+</body>
+</html>
